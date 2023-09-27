@@ -1,0 +1,62 @@
+/**
+ * Represent a Pressable Button.
+ * @constructor
+ * @param {ButtonProps} props
+ * @return {JSX.Element} Button
+ */
+
+import { useMemo } from 'react'
+import { Animated, Pressable } from 'react-native'
+
+import { Icon, Text } from '@atoms'
+import { useThemeProvider } from '@providers/theme/theme-provider'
+import styles from './button-styles'
+
+import type { IconProps } from '@atoms/icon/icon-props'
+import type { FC } from 'react'
+import type { ButtonProps } from './button-props'
+
+const AnimatedButton = Animated.createAnimatedComponent(Pressable)
+const Button: FC<ButtonProps> = ({
+  children,
+  title,
+  style,
+  styleText,
+  leftIcon,
+  rightIcon,
+  loading,
+  disabled,
+  iconVariant,
+  variant = 'normal',
+  ...props
+}: ButtonProps): JSX.Element => {
+  const { colors: { text } } = useThemeProvider()
+  const iconSize: number = styleText?.fontSize ?? 22
+  const color = styleText?.color ?? text
+
+  const IconMemo = ({ icon, style }: { icon: string; style?: IconProps['style'] }) => useMemo(
+    () => (<Icon name={icon} type={iconVariant} style={style} size={iconSize} />),
+    [leftIcon, rightIcon])
+
+  return (
+    <AnimatedButton role="button"
+      accessibilityRole="button"
+      accessibilityLabel={title ?? 'Button'}
+      style={[
+        { borderColor: color },
+        styles[variant as keyof typeof styles],
+        style,
+      ]}
+      disabled={disabled || loading}
+      {...props}
+    >
+      {loading ? (<IconMemo icon="spinner" />) : (<>
+        {leftIcon && (<IconMemo icon={leftIcon} style={styles.mr} />)}
+        {title && (<Text style={[styles.mr, styleText]}>{title}</Text>)}
+        {rightIcon && (<IconMemo icon={rightIcon} />)}
+      </>)}
+    </AnimatedButton>
+  )
+}
+
+export default Button

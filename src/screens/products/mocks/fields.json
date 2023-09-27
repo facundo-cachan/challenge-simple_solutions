@@ -1,0 +1,72 @@
+[
+  {
+    "label": "title",
+    "icon": "user",
+    "type": "input"
+  },
+  {
+    "label": "name",
+    "icon": "user",
+    "type": "input"
+  },
+  {
+    "label": "price",
+    "icon": "user",
+    "type": "input"
+  },
+  {
+    "label": "pictures",
+    "icon": "user",
+    "type": "input"
+  },
+  {
+    "label": "address",
+    "icon": "user",
+    "type": "input"
+  },
+  {
+    "label": "latitude",
+    "icon": "user",
+    "type": "input"
+  },
+  {
+    "label": "longitude",
+    "icon": "user",
+    "type": "input"
+  },
+  {
+    "label": "tags",
+    "icon": "user",
+    "type": "input"
+  },
+  {
+    "label": "about",
+    "icon": "user",
+    "type": "input"
+  },
+  {
+    "label": "videos",
+    "icon": "user",
+    "type": "input"
+  },
+  {
+    "label": "isActive",
+    "icon": "user",
+    "type": "input"
+  },
+  {
+    "label": "categoryId",
+    "icon": "user",
+    "type": "input"
+  },
+  {
+    "label": "since",
+    "icon": "calendar",
+    "type": "input"
+  },
+  {
+    "label": "to",
+    "icon": "calendar",
+    "type": "input"
+  }
+]
