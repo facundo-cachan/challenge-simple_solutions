@@ -43,6 +43,9 @@
       "@styles/*": [
         "src/styles/*"
       ],
+      "@props": [
+        "src/types/"
+      ],
       "@props/*": [
         "src/types/*"
       ]

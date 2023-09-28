@@ -5,13 +5,6 @@ export enum VariantFont {
   small,
   extraSmall,
 }
-type Font = {
-  fontFamily: string;
-  lineHeight: number;
-  fontSize: number;
-  fontWeight?: string;
-  textTransform?: 'uppercase' | 'lowercase' | 'capitalize';
-}
 export type ThemeProps = {
   dark: boolean;
   colors: {

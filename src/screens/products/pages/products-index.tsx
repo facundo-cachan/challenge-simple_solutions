@@ -5,45 +5,42 @@
 */
 
 import { useEffect, useState } from 'react'
+import { useRecoilState, useRecoilValue } from 'recoil'
 
-import { List } from '@atoms'
-import EventAPI from '@hooks/api/eventsAPI'
-import { useThemeProvider } from '@providers/theme/theme-provider'
+import { List, Text } from '@atoms'
+import ProductAPI from '@hooks/api/productsAPI'
+import { cartItemsSelector, cartState } from '@providers/recoil/atoms/cart'
 import { Card } from '../components'
-import EventScreenTemplate from '../templates/event-template-index'
+import ProductsScreenTemplate from '../templates/products-template-index'
 
 import type { NavigatorProps } from '@props/navigator'
-import type EventProps from '@types/events'
+import type ProductProps from '@props/product'
 import type { FC } from 'react'
 
-const ProductsScreen: FC<NavigatorProps> = (
-  {
-    navigation: { navigate },
-    route: { params: { created_by } }
-  }: NavigatorProps): JSX.Element => {
+const ProductsScreen: FC<NavigatorProps> = (): JSX.Element => {
   const [isLoading, setLoader] = useState<boolean>(true)
-  const [events, setEvents] = useState<EventProps[]>([])
-  const { colors: { background, primary } } = useThemeProvider()
+  const [products, setProducts] = useState<ProductProps[]>()
+  const cart = useRecoilState(cartState);
+  const cartItems = useRecoilValue(cartItemsSelector);
 
   useEffect(() => {
-    EventAPI.getAll({ by: created_by })
-      .then(({ data }) => setEvents(data))
+    ProductAPI.getAll()
+      .then((data) => setProducts(data))
       .catch((error) => console.log(error))
-      .finally(() => setLoader(!isLoading))
+      .finally(() => setLoader(false))
   }, [])
 
   return (
-    <EventScreenTemplate loading={isLoading}>
+    <ProductsScreenTemplate loading={isLoading}>
       <List
-        data={events as []}
-        renderItem={({ item }: { item: EventProps }) => (
-          <Card key={item.id} {...item} textColor={background}
-            finishColor={primary} iconColors={background}
-            onPress={() => console.log('EventByIdScreen', { eventId: item.id })
-            } />)
+        data={products as []}
+        renderItem={({ item }: { item: ProductProps }) => (
+          <Card key={item.id} {...item} />)
         }
       />
-    </EventScreenTemplate>
+      <Text>{JSON.stringify(cart, null, 2)}</Text>
+      <Text>{JSON.stringify(cartItems, null, 2)}</Text>
+    </ProductsScreenTemplate>
   )
 }
 

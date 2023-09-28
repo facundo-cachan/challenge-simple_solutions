@@ -7,8 +7,8 @@
 
 import { apiInstance, message } from './';
 
+import type UserProps from '@props/product';
 import type { CallbackProps } from '@props/sign';
-import type UserProps from '@props/user';
 
 class UserAPI {
   getByID = async (id: UserProps['id']) => {

@@ -14,8 +14,9 @@ export type HeaderScreenProps = {
   title?: NativeStackNavigationOptions['headerTitle']
 }
 export enum RootStack {
-  SignInScreen = 'SignInScreen',
-  ProductsScreen = 'ProductsScreen',
+  HomeStack,
+  SignInScreen,
+  ProductsScreen,
 }
 export type ScreenTypeProps = {
   component: FC<any> | ComponentType<any>,

@@ -1,5 +1,5 @@
 /**
- * Event Screen Template
+ * Products Screen Template
  *
  * @screen
  */
@@ -8,11 +8,11 @@ import { View } from 'react-native';
 
 import { Loader, Text } from '@atoms';
 
-import styles from './event-template-styles';
+import styles from './products-template-styles';
 
-import type { TemplateProps } from '@types/screen';
+import type { TemplateProps } from '@props/screen';
 
-const EventScreenTemplate = ({ children, loading, title }: TemplateProps): JSX.Element => loading ?
+const ProductsScreenTemplate = ({ children, loading, title }: TemplateProps): JSX.Element => loading ?
   (<Loader.ActivityIndicator />) : (
     <View style={styles.container}>
       {title && (
@@ -22,4 +22,4 @@ const EventScreenTemplate = ({ children, loading, title }: TemplateProps): JSX.E
     </View>
   )
 
-export default EventScreenTemplate
+export default ProductsScreenTemplate

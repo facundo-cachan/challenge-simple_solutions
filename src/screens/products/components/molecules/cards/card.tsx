@@ -1,47 +1,58 @@
 /**
- * Represents a Event Card.
+ * Represents a Event Product.
  * @constructor
- * @return {JSX.Element} Card
+ * @return {JSX.Element} Product
  */
 
 
-import { ImageBackground, Platform, UIManager, View } from 'react-native'
-
-if (Platform.OS === 'android') {
-  UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true)
-}
+import { View } from 'react-native'
+import { useRecoilState } from 'recoil'
 
 import { Button, Text } from '@atoms'
-import { Expanded } from '@molecules'
-import useNavigation from '@providers/navigator/hooks/useNavigation'
-import Tags from '../row/tags'
+import { cartState } from '@providers/recoil/atoms/cart'
 import styles from './card-styles'
 
-const CardEvent = ({ id, title, name, isActive, categoryId, image = 0, pictures, price,
-  address, latitude, longitude, tags, followers, likes, goinTo, comments, onPress, textColor, finishColor, iconColors
-}: any): JSX.Element => {
-  const { navigate } = useNavigation()
+import type ProductProps from '@props/product'
+import type { FC } from 'react'
+
+const Card: FC<ProductProps> = ({ id, username, price }: ProductProps): JSX.Element => {
+  const [_, setCart] = useRecoilState(cartState)
+
+  const handleAddToCart = (id: ProductProps['id']) => {
+    setCart((prevCart) => {
+      const existingItem = prevCart.find((item) => item.id === id);
+
+      if (existingItem) {
+        return prevCart.map((item) =>
+          item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      } else {
+        return [...prevCart, { id, username, price, quantity: 1 }];
+      }
+    })
+  }
+  const handleRemove = (id: ProductProps['id']) => {
+    setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+  }
 
   return (
-    <View key={categoryId} style={styles.card}>
-      <ImageBackground key={id} style={styles.img}
-        source={{ uri: pictures[image] }} blurRadius={!isActive ? 10 : 1}>
-        <View style={styles.overlay}>
-          <Text variant="large" color={textColor} onPress={onPress}>{title}</Text>
-        </View>
-        {!isActive && (<Text variant="large" color={finishColor}>Not available</Text>)}
-      </ImageBackground>
-      <Expanded label={name}>
-        <Text>${price}</Text>
+    <>
+      <View key={id} style={styles.card}>
+        <Text>{username} ${price}</Text>
         <Button
-          title={`About ${name}`}
+          title="+"
           variant="extraSmall"
-          onPress={() => navigate('PlaceByIdScreen', { placeId: id })}
+          onPress={() => handleAddToCart(id)}
         />
-        <Tags tags={tags} />
-      </Expanded>
-    </View>
+        <Button
+          title="-"
+          variant="extraSmall"
+          onPress={() => handleRemove(id)}
+        />
+      </View>
+      
+    </>
   )
 }
 
-export default CardEvent
+export default Card

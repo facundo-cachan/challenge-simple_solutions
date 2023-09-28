@@ -13,7 +13,7 @@ import { LoginForm } from '../components'
 import SignInScreenTemplate from '../templates/signIn-template-index'
 
 import type { NavigatorProps } from '@props/navigator'
-import type { SessionProps } from '@props/session'
+import type SessionProps from '@props/session'
 import type { FC } from 'react'
 
 const SignInScreen: FC<NavigatorProps> = ({
@@ -23,7 +23,7 @@ const SignInScreen: FC<NavigatorProps> = ({
 
   useEffect(() => {
     if (session) {
-      navigate('HomeStack', { screen: 'HomeScreen' })
+      navigate('ProductsScreen')
     }
   }, [session])
 
