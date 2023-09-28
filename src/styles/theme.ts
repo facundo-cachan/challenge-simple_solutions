@@ -36,7 +36,7 @@ const fontFamily: string = Platform.OS === 'ios' ? 'San Francisco' : 'Mooli Regu
       lineHeight: getFontLineHeight(12)
     }
   } as const;
-  console.log('fonts', fonts.extraSmall);
+
 export const defaults = {
   borderRadius: 15,
   fonts

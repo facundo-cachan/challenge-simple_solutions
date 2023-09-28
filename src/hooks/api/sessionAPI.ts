@@ -4,6 +4,7 @@
  * @constructor
  */
 
+import btoa from '@hooks/btoa';
 // @ts-ignore
 import { PASSWORD, USERNAME } from '@env';
 import { Error, apiInstance } from '.';
@@ -16,9 +17,12 @@ class SessionAPI {
     // TODO: Remove this validation in staging
     if (username == USERNAME && password == PASSWORD) {
       const response: CallbackProps = await apiInstance.get('login', {
+        headers: {
+          Authorization: `Basic Auth ${btoa(`${username}:${password}`)}`
+        },
         params: {
           username,
-          password,
+          password
         }
       })
       if (response.status === 200) {

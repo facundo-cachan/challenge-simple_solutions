@@ -16,7 +16,6 @@ type Interceptor = {
   response: AxiosInterceptorManager<AxiosResponse<any, any>>;
 }
 
-
 export enum Environment {
   'local', 'myApi'
 }
