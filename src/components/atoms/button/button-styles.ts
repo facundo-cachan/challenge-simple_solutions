@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     bottom: 8,
     left: 10,
     zIndex: 10,
+    fontWeight: 'bold',
   },
   normal: {
     ...defaultButton,

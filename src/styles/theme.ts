@@ -36,20 +36,21 @@ const fontFamily: string = Platform.OS === 'ios' ? 'San Francisco' : 'Mooli Regu
       lineHeight: getFontLineHeight(12)
     }
   } as const;
+  console.log('fonts', fonts.extraSmall);
 export const defaults = {
   borderRadius: 15,
   fonts
 }
 const alerts = {
   error: '#E74C3C',
-  warn: '#EAAE07',
+  warning: '#EAAE07',
   success: '#58D68D',
 }
 export const lightTheme: ThemeProps = {
   dark: false,
   colors: {
     background: '#81D7F9',
-    text: '#18327A',
+    text: '#fff',
     primary: '#6915D9',
     secondary: '#EC7063',
     card: '#fff',
@@ -66,7 +67,7 @@ export const darkTheme: ThemeProps = {
     background: '#09265D',
     text: '#D7F2FB',
     primary: '#28025B',
-    secondary: '#DFEC63',
+    secondary: '#C21806',
     card: '#0B3B0B',
     border: '#D7F2FB',
     notification: '#E74C3C',

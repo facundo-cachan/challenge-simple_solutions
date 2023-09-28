@@ -45,19 +45,14 @@ const Button: FC<ButtonProps> = ({
       accessibilityLabel={title ?? 'Button'}
       style={[
         { borderColor: color },
-        styles[variant as keyof typeof styles],
+        styles[variant],
         style,
       ]}
       disabled={disabled || loading}
       {...props}
     >
       {loading ? (<IconMemo icon="spinner" />) : (<>
-        {badge && (<>
-          <Text style={[styles.badge, {
-            color: secondary,
-            fontSize: iconSize / 2
-          }]}>{badge}</Text>
-        </>)}
+        {badge && (<Text color={secondary} style={styles.badge}>{badge}</Text>)}
         {leftIcon && (<IconMemo icon={leftIcon} style={styles.mr} />)}
         {title && (<Text style={[styles.mr, styleText]}>{title}</Text>)}
         {rightIcon && (<IconMemo icon={rightIcon} />)}

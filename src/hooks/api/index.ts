@@ -57,9 +57,9 @@ interceptors.response.use(
   (response: AxiosResponse) => {
     const { data } = response;
     if (data?.token) {
-      const { expiresIn, token, user } = data;
+      const { expiresIn, token, ...rest } = data;
       setRecoil(session, { expiresIn, token })
-      return user
+      return rest
     }
     return data
   },

@@ -1,4 +1,3 @@
-import type { TextProps } from '@atoms/text/text-props'
 import type { NavigationProp, RouteProp } from '@react-navigation/native'
 import type { NativeStackNavigationOptions } from '@react-navigation/native-stack/lib/typescript/src/types'
 import type { ComponentType, FC } from 'react'
@@ -24,23 +23,8 @@ export type ScreenTypeProps = {
 export type RoutesScreens = {
   [key in RootStack]: ScreenTypeProps['component']
 }
-export type Theme = {
-  dark: boolean
-  colors: {
-    primary: string
-    background: string
-    card: string
-    text: string
-    border: string
-    notification: string
-  }
-  fonts: keyof TextProps['variant']
-  animation: {
-    scale: number
-  }
-}
 export type NavigatorProps = {
-  navigation: NavigationProp<keyof typeof RootStack>
+  navigation: NavigationProp<RootStack>
   route?: RouteProp<RoutesScreens>
 }
 export type ScreenType = ScreenTypeProps & {

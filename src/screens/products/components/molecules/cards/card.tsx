@@ -1,5 +1,5 @@
 /**
- * Represents a Event Product.
+ * Represents a Product.
  * @constructor
  * @return {JSX.Element} Product
  */
@@ -15,11 +15,14 @@ import type ProductProps from '@props/product'
 import type { FC } from 'react'
 
 const Card: FC<ProductProps> = (product: ProductProps): JSX.Element => {
+  const { add, remove } = useCart()
   const { id, username, price } = product
-  const { add } = useCart()
+
   const handleAddToCart = () => {
-    console.log('handleAddToCart', id);
     add(product)
+  }
+  const handleRemoveFromCart = () => {
+    remove(id)
   }
 
   return (
@@ -34,7 +37,7 @@ const Card: FC<ProductProps> = (product: ProductProps): JSX.Element => {
         <Button
           title="-"
           variant="extraSmall"
-          onPress={() => { }}
+          onPress={handleRemoveFromCart}
         />
       </View>
     </>

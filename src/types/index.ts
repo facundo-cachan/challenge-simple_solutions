@@ -1,4 +1,6 @@
+enum TypeNotification { success, error, warning }
 export type CallbackProps = {
-  status: number
+  type: keyof typeof TypeNotification
+  status?: number
   msg: string
 }

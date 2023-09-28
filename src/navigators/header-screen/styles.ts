@@ -30,10 +30,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   itemText: {
-    fontSize: 14,
     fontWeight: 'bold',
-  },
-  checkout: {
   },
   tapbarLeft: {
     ...config,

@@ -10,7 +10,6 @@
  * @return {JSX.Element} Text
  */
 
-
 import { Text as RNText } from 'react-native'
 
 import { useThemeProvider } from '@providers/theme/theme-provider'
@@ -25,6 +24,8 @@ const Text: FC<TextProps> = ({
   : TextProps): JSX.Element => {
   const { colors, fonts } = useThemeProvider()
 
+  if (!children) return (<></>)
+
   return (<RNText
     accessibilityRole="text"
     onPress={onPress}
@@ -33,6 +34,7 @@ const Text: FC<TextProps> = ({
       {
         color: color ?? colors.text
       },
+      // @ts-ignore
       fonts[variant],
       style
     ]}

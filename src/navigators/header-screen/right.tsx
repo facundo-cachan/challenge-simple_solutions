@@ -14,33 +14,43 @@ type PopupProps = {
   items: ProductInCartProps[]
   backgroundColor: string
 }
-const TextItem = ({ children, color }: { children: string | string[] | number, color: string }) => (<Text style={styles.itemText} color={color}>{children}</Text>)
+type TextItemProps = {
+  children: string | string[] | number
+  color: string
+}
+const TextItem = ({ children, color }: TextItemProps) => (<Text style={styles.itemText} color={color}>{children}</Text>)
 const Popup = ({ items, backgroundColor }: PopupProps) => {
   const checkout = () => ProductAPI.checkout(items)
-  
+
   return (
-  <View style={styles.popup}>
-    <View style={styles.items}>
-    {items.map(({ id, username, price, quantity }: ProductInCartProps) => (
-      <View key={id} style={styles.item}>
-      <TextItem color={backgroundColor}>{username}</TextItem>
-      <TextItem color={backgroundColor}>{price}</TextItem>
-      <TextItem color={backgroundColor}>{quantity.toString()}</TextItem>
+    <View style={styles.popup}>
+      <View style={styles.items}>
+        {items.map(({ id, username, price, quantity }: ProductInCartProps) => (
+          <View key={id} style={styles.item}>
+            <TextItem>{username}</TextItem>
+            <TextItem color={backgroundColor}>{price}</TextItem>
+            <TextItem color={backgroundColor}>{quantity.toString()}</TextItem>
+          </View>
+        ))}
       </View>
-    ))}
-      </View>
-    <Button
-      title="CheckOut"
-      accessibilityLabel="CheckOut"
-      iconVariant="feather"
-      style={styles.checkout}
-      onPress={checkout}
-    />
-  </View>
-)}
+      <Button
+        title="CheckOut"
+        accessibilityLabel="CheckOut"
+        iconVariant="feather"
+        onPress={checkout}
+      />
+    </View>
+  )
+}
 const rootHeaderRight: FC<{}> = (): JSX.Element => {
-  const { isDark, changeTheme, colors: { card, primary, text } } = useThemeProvider()
-  const btn = { color: card, fontSize: 22 }
+  const { isDark, changeTheme,
+    colors: { card, primary, text },
+    fonts: {
+      normal: { fontSize },
+      extraLarge: { fontSize: largeFontSize }
+    }
+  } = useThemeProvider()
+  const btn = { color: card, fontSize }
   const { cart } = useCart()
   const { openPortal } = usePortal()
 
@@ -55,11 +65,11 @@ const rootHeaderRight: FC<{}> = (): JSX.Element => {
         onPress={() => changeTheme(!isDark)}
       />
       {cart.length > 0 && (<Button
+        badge={cart.length}
         variant="extraSmall"
         accessibilityLabel="Shopping Cart"
-        iconVariant="feather"
-        styleText={btn}
-        title={cart.length.toString()}
+        iconVariant="fontAwesome"
+        styleText={{ ...btn, fontSize: largeFontSize }}
         leftIcon="shopping-cart"
         onPress={() => openPortal(<Popup items={cart} backgroundColor={text} />)}
       />)}

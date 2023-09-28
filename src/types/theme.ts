@@ -21,6 +21,8 @@ export type ThemeProps = {
     primary: string
     secondary: string
     error: string
+    warning: string
+    success: string
     background: string
     card: string
     text: string

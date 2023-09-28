@@ -22,7 +22,10 @@ const SignInScreen: FC<NavigatorProps> = ({
 
   useEffect(() => {
     if (session) {
-      navigate('ProductsScreen')
+      setTimeout(() => {
+        navigate('ProductsScreen' as never)
+      }, 2000);
+      
     }
   }, [session])
 
