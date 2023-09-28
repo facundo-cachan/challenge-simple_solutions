@@ -1,10 +1,10 @@
 
-import { useThemeProvider } from '@providers/theme/theme-provider'
 
 import rootHeaderLeft from './left'
 import rootHeaderRight from './right'
 
 import type { HeaderScreenProps } from '@props/navigator'
+import type { FC } from 'react'
 
 const config = {
   animation: 'spring',
@@ -17,8 +17,8 @@ const config = {
     restSpeedThreshold: 0.01
   }
 }
-const rootHeaderScreen = ({ title, left, right }: HeaderScreenProps) => {
-  const { colors: { primary } } = useThemeProvider()
+
+const rootHeaderScreen: FC<HeaderScreenProps> = ({ title, left, right }: HeaderScreenProps): JSX.Element => {
 
   return {
     transitionSpec: {
@@ -31,7 +31,7 @@ const rootHeaderScreen = ({ title, left, right }: HeaderScreenProps) => {
     headerMode: 'screen',
     headerShadowVisible: true,
     headerStyle: {
-      backgroundColor: primary,
+      backgroundColor: 'transparent',
     },
     headerLeft: left && rootHeaderLeft,
     headerRight: right && rootHeaderRight,

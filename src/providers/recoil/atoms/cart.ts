@@ -1,41 +1,41 @@
-import type ProductProps from '@props/product';
-import { atom, selector } from 'recoil';
+import type ProductProps from "@props/product";
+import type { ProductInCartProps } from "@props/product";
 
-type ProductInCartProps = ProductProps & {
-  quantity: number
-}
+import { atom, useRecoilState } from 'recoil';
 
+const initialCart: ProductInCartProps[] = []
 export const cartState = atom<ProductInCartProps[]>({
   key: 'cartState',
-  default: [],
-});
+  default: initialCart
+})
 
-export const cartItemsSelector = selector({
-  key: 'cartItemsSelector',
-  get: ({ get }) => {
-    const cart = get(cartState);
-    return cart.reduce((acc, item) => acc + item.quantity, 0);
-  },
-});
+const useCart = () => {
+  const [cart, setCart] = useRecoilState<ProductInCartProps[]>(cartState);
 
-export const addToCart = (item: ProductProps) => {
-  const existingItem = cartState.find((i: ProductProps) => i.id === item.id);
-
-  if (existingItem) {
-    existingItem.quantity += 1;
-  } else {
-    cartState.push({ ...item, quantity: 1 });
-  }
-};
-
-export const removeFromCart = (id: ProductProps['id']) => {
-  const existingItem = cartState.find((i) => i.id === id);
-
-  if (existingItem) {
-    if (existingItem.quantity === 1) {
-      cartState.splice(cartState.indexOf(existingItem), 1);
+  const add = (product: ProductProps) => {
+    const itemInCart = cart.find((item) => item.id === product.id);
+    if (itemInCart) {
+      const updatedCart = cart.map((item) =>
+        item.id === product.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+      setCart(updatedCart)
     } else {
-      existingItem.quantity -= 1;
+      setCart([...cart, { ...product, quantity: 1 }])
     }
   }
-};
+
+  const remove = (productId: ProductProps['id']) => {
+    const updatedCart = cart.filter((item) => item.id !== productId);
+    setCart(updatedCart)
+  }
+
+  const clear = () => {
+    setCart(initialCart)
+  }
+
+  return { cart, add, remove, clear }
+}
+
+export default useCart;

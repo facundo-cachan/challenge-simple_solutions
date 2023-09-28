@@ -37,11 +37,7 @@ const fontFamily: string = Platform.OS === 'ios' ? 'San Francisco' : 'Mooli Regu
     }
   } as const;
 export const defaults = {
-  animation: {
-    scale: 1
-  },
   borderRadius: 15,
-  elevation: 5,
   fonts
 }
 const alerts = {
@@ -55,7 +51,7 @@ export const lightTheme: ThemeProps = {
     background: '#81D7F9',
     text: '#18327A',
     primary: '#6915D9',
-    secondary: '#58D68D',
+    secondary: '#EC7063',
     card: '#fff',
     border: '#D7F2FB',
     notification: '#E74C3C',
@@ -70,7 +66,7 @@ export const darkTheme: ThemeProps = {
     background: '#09265D',
     text: '#D7F2FB',
     primary: '#28025B',
-    secondary: '#117A65',
+    secondary: '#DFEC63',
     card: '#0B3B0B',
     border: '#D7F2FB',
     notification: '#E74C3C',

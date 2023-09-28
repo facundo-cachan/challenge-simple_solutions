@@ -7,7 +7,6 @@
 import { useEffect } from 'react'
 import { useRecoilValue } from 'recoil'
 
-import { Text } from '@atoms'
 import { session as sessionAtom } from '@providers/recoil/atoms/session'
 import { LoginForm } from '../components'
 import SignInScreenTemplate from '../templates/signIn-template-index'
@@ -30,7 +29,6 @@ const SignInScreen: FC<NavigatorProps> = ({
   return (
     <SignInScreenTemplate>
       <LoginForm />
-      <Text>{JSON.stringify(session, null, 2)}</Text>
     </SignInScreenTemplate>
   )
 }

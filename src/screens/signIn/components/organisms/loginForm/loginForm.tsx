@@ -44,7 +44,7 @@ const LoginForm = () => {
         if (finished) {
           setTitle(undefined);
           setLeftIcon('check');
-          navigate('HomeStack', { screen: 'ProductsScreen' })
+          navigate('ProductsScreen')
         }
       })
     }

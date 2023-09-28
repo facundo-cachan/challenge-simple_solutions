@@ -1,9 +1,10 @@
 import { hp, width } from '@hooks/_dimensions'
-import { StyleSheet } from 'react-native'
+import { Platform, StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
   container: {
     padding: 10,
+    paddingTop: Platform.OS === 'ios' ? 80 : 1,
     height: hp(85),
     width
   },

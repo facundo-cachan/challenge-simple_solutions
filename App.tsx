@@ -9,6 +9,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { RecoilRoot } from 'recoil';
 
 import RootNavigator from '@navigators';
+import { PortalProvider } from '@providers/portal/portal';
 import RecoilNexus from '@providers/state-management/Nexus';
 import { ThemeProvider } from '@providers/theme/theme-provider';
 
@@ -19,7 +20,9 @@ function App(): JSX.Element {
       <RecoilRoot>
         <RecoilNexus />
         <ThemeProvider>
-          <RootNavigator />
+          <PortalProvider>
+            <RootNavigator />
+          </PortalProvider>
         </ThemeProvider>
       </RecoilRoot>
     </SafeAreaProvider>

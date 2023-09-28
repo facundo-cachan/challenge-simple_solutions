@@ -30,5 +30,25 @@
       "username": "Banco para exterior",
       "price": 5680.99
     }
+  ],
+  "checkout": [
+    {
+      "id": 1,
+      "username": "Mesa de madera",
+      "price": 1550.65,
+      "quantity": 1
+    },
+    {
+      "id": 2,
+      "username": "Silla de madera",
+      "price": 435.05,
+      "quantity": 1
+    },
+    {
+      "id": 3,
+      "username": "Lámpara de pie",
+      "price": 235,
+      "quantity": 1
+    }
   ]
 }

@@ -5,7 +5,9 @@ import { View } from 'react-native'
 import { Button } from '@atoms'
 import styles from './styles'
 
-const rootHeaderLeft = (): JSX.Element => {
+import type { FC } from 'react'
+
+const rootHeaderLeft: FC<{}> = (): JSX.Element => {
   const { goBack } = useNavigation()
   const {
     colors: { primary },

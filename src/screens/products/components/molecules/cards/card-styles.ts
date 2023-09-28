@@ -4,9 +4,13 @@ import { StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
   card: {
     alignItems: 'center',
+    borderColor: '#000',
+    borderRadius: 10,
+    borderWidth: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: wp(4),
+    padding: wp(3),
+    marginVertical: wp(1),
   }
 })
 

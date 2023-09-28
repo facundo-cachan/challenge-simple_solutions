@@ -14,21 +14,29 @@ import SignInScreen from '@screens/signIn/pages/signIn-index'
 import type { ScreenType } from '@props/navigator'
 import type { StackNavigationOptions } from '@react-navigation/stack/lib/typescript/src/types'
 
+// const signInHeaderScreen = rootHeaderScreen({ right: false }) as StackNavigationOptions
+
 const screens: ScreenType[] = [
   {
     component: SignInScreen,
-    name: 'SignInScreen'
+    name: 'SignInScreen',
+    options: {
+      headerShown: false
+    }
   },
   {
     component: ProductsScreen,
-    name: 'ProductsScreen'
+    name: 'ProductsScreen',
+    options: {
+      headerLeft: () => <></>
+    }
   }
 ]
-const screenOptions = () => rootHeaderScreen({ right: true }) as StackNavigationOptions
+const screenOptions: StackNavigationOptions = rootHeaderScreen({ right: true })
 const HomeStack = () => (
   <Screen name="HomeStack" options={{ headerShown: false }}>
     {() => (
-      <Navigator initialRouteName="SignInScreen" screenOptions={screenOptions}>
+      <Navigator initialRouteName="HomeScreen" screenOptions={screenOptions}>
         {screens.map((props: ScreenType) => (
           <Screen key={props.name} {...props} />
         ))}

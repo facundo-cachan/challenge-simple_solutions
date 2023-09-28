@@ -4,6 +4,7 @@ import type { TextStyle, ViewStyle } from 'react-native';
 import type { PressableProps } from 'react-native/Libraries/Components/Pressable/Pressable';
 
 export interface ButtonProps extends PressableProps {
+  badge?: string
   children?: ReactNode | ReactNode[];
   accessibilityLabel?: string
   variant?: IconProps['variant']

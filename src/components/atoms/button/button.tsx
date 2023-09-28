@@ -27,12 +27,13 @@ const Button: FC<ButtonProps> = ({
   loading,
   disabled,
   iconVariant,
+  badge,
   variant = 'normal',
   ...props
 }: ButtonProps): JSX.Element => {
-  const { colors: { text } } = useThemeProvider()
-  const iconSize: number = styleText?.fontSize ?? 22
-  const color = styleText?.color ?? text
+  const { colors: { primary, secondary }, fonts } = useThemeProvider()
+  const iconSize: number = styleText?.fontSize ?? fonts[variant].fontSize
+  const color = styleText?.color ?? primary
 
   const IconMemo = ({ icon, style }: { icon: string; style?: IconProps['style'] }) => useMemo(
     () => (<Icon name={icon} type={iconVariant} style={style} size={iconSize} />),
@@ -51,6 +52,12 @@ const Button: FC<ButtonProps> = ({
       {...props}
     >
       {loading ? (<IconMemo icon="spinner" />) : (<>
+        {badge && (<>
+          <Text style={[styles.badge, {
+            color: secondary,
+            fontSize: iconSize / 2
+          }]}>{badge}</Text>
+        </>)}
         {leftIcon && (<IconMemo icon={leftIcon} style={styles.mr} />)}
         {title && (<Text style={[styles.mr, styleText]}>{title}</Text>)}
         {rightIcon && (<IconMemo icon={rightIcon} />)}

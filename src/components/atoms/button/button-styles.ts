@@ -12,6 +12,12 @@ const defaultButton = {
 } as const
 const styles = StyleSheet.create({
   mr: { marginLeft: 10 },
+  badge: {
+    position: 'absolute',
+    bottom: 8,
+    left: 10,
+    zIndex: 10,
+  },
   normal: {
     ...defaultButton,
     justifyContent: 'center'
