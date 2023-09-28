@@ -4,7 +4,6 @@ import rootHeaderLeft from './left'
 import rootHeaderRight from './right'
 
 import type { HeaderScreenProps } from '@props/navigator'
-import type { FC } from 'react'
 
 const config = {
   animation: 'spring',
@@ -18,7 +17,7 @@ const config = {
   }
 }
 
-const rootHeaderScreen: FC<HeaderScreenProps> = ({ title, left, right }: HeaderScreenProps): JSX.Element => {
+const rootHeaderScreen = ({ title, left, right }: HeaderScreenProps) => {
 
   return {
     transitionSpec: {

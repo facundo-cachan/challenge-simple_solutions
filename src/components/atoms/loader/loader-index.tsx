@@ -15,12 +15,10 @@ import type { FC } from 'react'
 import type { ActivityIndicatorProps } from 'react-native/Libraries/Components/ActivityIndicator/ActivityIndicator'
 
 const ActivityIndicator: FC<ActivityIndicatorProps> = ({ color, size = 'small' }: ActivityIndicatorProps): JSX.Element => {
-  const { colors: { textInverted }, fonts } = useThemeProvider()
-  const iconSize: number = fonts[size].fontSize
-  const c = color ?? textInverted
+  const { colors: { text } } = useThemeProvider()
 
   return (
-    <AI size={iconSize} color={c} style={styles.loader} />
+    <AI size={size} color={color ?? text} style={styles.loader} />
   )
 }
 

@@ -1,4 +1,4 @@
-import { hp } from "@hooks/_dimensions"
+import { hp, wp } from "@hooks/_dimensions"
 import { StyleSheet } from "react-native"
 
 const styles = StyleSheet.create({
@@ -22,7 +22,10 @@ const styles = StyleSheet.create({
     elevation: 5
   },
   closeButton: {
-    marginLeft: hp(37),
+    width: hp(3), height: hp(3),
+    top: hp(2),
+    left: wp(35),
+    zIndex: 99,
   },
   body: {
     marginTop: 30,

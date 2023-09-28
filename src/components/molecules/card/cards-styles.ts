@@ -1,10 +1,8 @@
 import { hp, wp } from '@hooks/_dimensions'
-import shadow from '@styles/shadow'
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
   card: {
-    ...shadow,
     alignItems: 'center',
     alignSelf: 'center',
     borderRadius: 10,

@@ -46,7 +46,7 @@ const Icon: FC<IconProps> = ({
     padding: 0,
     backgroundColor,
     color: color ?? text,
-    size: size || 22
+    size: size || fonts[variant].fontSize,
   }
 
   return name === 'spinner' ?

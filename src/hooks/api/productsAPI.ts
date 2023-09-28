@@ -5,8 +5,9 @@
  * @constructor
  */
 
-import { apiInstance } from '.';
+import { apiInstance, Error } from '.';
 
+import type { CallbackProps } from '@props';
 import type ProductProps from '@props/product';
 import type { ProductInCartProps } from '@props/product';
 
@@ -16,9 +17,11 @@ class ProductAPI {
     return response
   };
   checkout = async (data: ProductInCartProps[]) => {
-    const response: ProductProps = await apiInstance.post('checkout', data)
-    console.log('checkout', response);
-    return response
+    const response: CallbackProps = await apiInstance.post('checkout', data)
+    if (response.status === 200) {
+      return { data: response, notification: { type: 'success', msg: response.msg } }
+    }
+    return { data: null, notification: Error }
   }
 }
 

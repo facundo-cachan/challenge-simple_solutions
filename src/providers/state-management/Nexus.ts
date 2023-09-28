@@ -25,6 +25,7 @@ export default function RecoilNexus() {
   const getInfo = useGetRecoilValueInfo_UNSTABLE()
   const transact = useRecoilTransaction_UNSTABLE(({ set }) => set)
 
+  // @ts-ignore
   nexus.set = useRecoilCallback(({ set }) => {
     return function <T>(recoilState: RecoilState<T>, valOrUpdater: T | ((currVal: T) => T)) {
       const update = {

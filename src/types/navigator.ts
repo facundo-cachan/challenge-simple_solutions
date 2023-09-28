@@ -1,5 +1,6 @@
 import type { NavigationProp, RouteProp } from '@react-navigation/native'
 import type { NativeStackNavigationOptions } from '@react-navigation/native-stack/lib/typescript/src/types'
+import { StackNavigationOptions } from '@react-navigation/stack/lib/typescript/src/types'
 import type { ComponentType, FC } from 'react'
 
 export type Router = {
@@ -17,8 +18,8 @@ export enum RootStack {
   ProductsScreen,
 }
 export type ScreenTypeProps = {
-  component: FC<any> | ComponentType<any>,
-  options?: Partial<NativeStackNavigationOptions>
+  component: FC<any> | ComponentType<any>
+  options?: StackNavigationOptions
 }
 export type RoutesScreens = {
   [key in RootStack]: ScreenTypeProps['component']

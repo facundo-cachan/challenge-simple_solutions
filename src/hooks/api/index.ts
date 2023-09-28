@@ -16,10 +16,14 @@ type Interceptor = {
   response: AxiosInterceptorManager<AxiosResponse<any, any>>;
 }
 
+
 export enum Environment {
   'local', 'myApi'
 }
-
+export const Error = {
+  msg: 'Token NO generado',
+  type: 'error'
+}
 export const DEFAULT_ENV = Environment.local
 export const message = 'notification { type message }';
 const getBaseUrl = (env: Environment = DEFAULT_ENV) => {

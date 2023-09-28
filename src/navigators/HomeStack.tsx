@@ -37,7 +37,7 @@ const screenOptions: StackNavigationOptions = rootHeaderScreen({ right: true }) 
 const HomeStack = () => (
   <Screen name="HomeStack" options={{ headerShown: false }}>
     {() => (
-      <Navigator initialRouteName="ProductsScreen" screenOptions={screenOptions}>
+      <Navigator initialRouteName="SignInScreen" screenOptions={screenOptions}>
         {screens.map((props: ScreenType) => (
           <Screen key={props.name} {...props} />
         ))}

@@ -11,32 +11,39 @@ import useCart from '@providers/recoil/atoms/cart'
 import type { FC } from 'react'
 
 type PopupProps = {
-  items: ProductInCartProps[]
+  color: string
   backgroundColor: string
+  items: ProductInCartProps[]
 }
 type TextItemProps = {
   children: string | string[] | number
-  color: string
+  color: PopupProps['color']
 }
 const TextItem = ({ children, color }: TextItemProps) => (<Text style={styles.itemText} color={color}>{children}</Text>)
-const Popup = ({ items, backgroundColor }: PopupProps) => {
-  const checkout = () => ProductAPI.checkout(items)
+const Popup = ({ items, color, backgroundColor }: PopupProps) => {
+  const checkout = () => ProductAPI.checkout(items).then(({ notification }) => {
+    if (notification.type === 'success') {
+      usePortal().closePortal()
+      useCart().clear()
+    }
+  })
 
   return (
-    <View style={styles.popup}>
+    <View style={[styles.popup, { backgroundColor }]}>
       <View style={styles.items}>
         {items.map(({ id, username, price, quantity }: ProductInCartProps) => (
           <View key={id} style={styles.item}>
-            <TextItem>{username}</TextItem>
-            <TextItem color={backgroundColor}>{price}</TextItem>
-            <TextItem color={backgroundColor}>{quantity.toString()}</TextItem>
+            <TextItem color={color}>{username}</TextItem>
+            <TextItem color={color}>{`$${price}`}</TextItem>
+            <TextItem color={color}>{quantity.toString()}</TextItem>
           </View>
         ))}
       </View>
       <Button
         title="CheckOut"
-        accessibilityLabel="CheckOut"
         iconVariant="feather"
+        styleText={{ color }}
+        accessibilityLabel="CheckOut"
         onPress={checkout}
       />
     </View>
@@ -71,7 +78,8 @@ const rootHeaderRight: FC<{}> = (): JSX.Element => {
         iconVariant="fontAwesome"
         styleText={{ ...btn, fontSize: largeFontSize }}
         leftIcon="shopping-cart"
-        onPress={() => openPortal(<Popup items={cart} backgroundColor={text} />)}
+        onPress={() => openPortal(<Popup items={cart}
+          color={primary} backgroundColor={text} />)}
       />)}
       <Button
         variant="extraSmall"

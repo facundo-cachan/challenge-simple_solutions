@@ -4,16 +4,13 @@
  * @constructor
  */
 
-import { PASSWORD, USERNAME } from '@env'
-import { apiInstance } from '.'
+// @ts-ignore
+import { PASSWORD, USERNAME } from '@env';
+import { Error, apiInstance } from '.';
 
-import type { CallbackProps } from '@props'
-import type { SignInProps } from '@props/sign'
+import type { CallbackProps } from '@props';
+import type { SignInProps } from '@props/sign';
 
-const Error = {
-  msg: 'Token NO generado',
-  type: 'error'
-}
 class SessionAPI {
   signIn = async ({ username, password }: SignInProps) => {
     // TODO: Remove this validation in staging

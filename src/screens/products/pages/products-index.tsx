@@ -13,11 +13,11 @@ import ProductsScreenTemplate from '../templates/products-template-index'
 
 import type { NavigatorProps } from '@props/navigator'
 import type ProductProps from '@props/product'
-import type { FC } from 'react'
+import type { FC, SetStateAction } from 'react'
 
 const ProductsScreen: FC<NavigatorProps> = (): JSX.Element => {
   const [isLoading, setLoader] = useState<boolean>(true)
-  const [products, setProducts] = useState<ProductProps[]>()
+  const [products, setProducts] = useState<SetStateAction<ProductProps[]> | unknown>([])
 
   useEffect(() => {
     ProductAPI.getAll()
