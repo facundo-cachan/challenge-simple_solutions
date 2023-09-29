@@ -50,9 +50,7 @@ const LoginForm = () => {
   const signIn = () => {
     setLoader((prev: boolean) => !prev);
     SessionAPI.signIn({ username, password })
-      .then(({ notification }: any) => {
-        setNotification(notification);
-      })
+      .then(({ notification }: any) => setNotification(notification))
       .finally(() => setLoader((prev: boolean) => !prev))
   }
 
